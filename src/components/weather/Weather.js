@@ -9,7 +9,8 @@ import clear_icon from "../../resources/img/clear.png";
 import { useEffect, useState, useRef } from "react";
 
 const Weather = () => {
-  const _apiKey = "appid=7b561a0b81a7a53a2ceee4fc214bce9b";
+  const _apiKey = process.env.REACT_APP_WEATHER_KEY;
+  console.log(_apiKey);
   const _apiBase = "https://api.openweathermap.org/data/2.5/weather?q=";
 
   const [weatherData, setWeatherData] = useState(null);
@@ -39,7 +40,7 @@ const Weather = () => {
     }
 
     try {
-      const url = `${_apiBase}+${city}&units=metric&${_apiKey}`;
+      const url = `${_apiBase}+${city}&units=metric&appid=${_apiKey}`;
 
       const response = await fetch(url);
       const data = await response.json();
